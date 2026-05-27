@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .card {
+            height: 100%;
+            border-radius: 0;
+        }
+        .msg_head {
+            background: #2a2bb8;
+            color: #fff;
+            padding: 16px;
+            border-bottom: 1px solid #2a2bb8;
+        }
+        .img_cont {
+            position: relative;
+        }
+        .user_img {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+        }
+        .online_icon {
+            position: absolute;
+            height: 15px;
+            width: 15px;
+            background-color: #4cd137;
+            border-radius: 50%;
+            bottom: 0;
+            right: 0;
+            border: 2px solid white;
+        }
+        .msg_card_body {
+            overflow-y: auto;
+            flex-grow: 1;
+            padding: 0 15px;
+        }
+        .chat-bubble {
+            padding: 10px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+            line-height: 24px;
+            position: relative;
+            font-size: 14px;
+            max-width: 90%;
+        }
+        .Salesman {
+            background-color: #e0f7fa; /* Ensure this color is light green as intended */
+            color: #05505c;
+            align-self: flex-start;
+        }
+        .Customer {
+            background-color: #fce4ec; /* Light red background for the Customer */
+            color: #6d071a;
+            align-self: flex-end;
+            text-align: left;
+        }
+        .Salesman::before, .Customer::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+        .Salesman::before {
+            right: 100%;
+            border-width: 8px 8px 8px 0;
+            border-color: transparent #e0f7fa transparent transparent;
+        }
+        .Customer::before {
+            left: 100%;
+            border-width: 8px 0 8px 8px;
+            border-color: transparent transparent transparent #fce4ec;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        span {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .title-slogan{
+            opacity: 1;
+            color: white;
+            margin-left: 30px;
+            font-size:20px;
+        }
+    </style>
+    
+</head>
+<body>
+<div class="container-fluid h-100">
+    <div class="card">
+        <div class="card-header msg_head">
+            <div class="d-flex bd-highlight">
+                <div class="img_cont">
+                    <img src="http://127.0.0.1:5000/logo/gea-logo-b.jpg" class="rounded-circle user_img">
+                    <span class="online_icon"></span>
+                </div>
+                <div class="user_info">
+                    <span class="title-slogan">Pricing </span><br><span class="title-slogan">for a better </span><br><span class="title-slogan">world.</span>
+                </div>
+                <div class="ml-auto">
+                    <button id="startChat" class="btn btn-primary">Start Pricing Demo</button>
+                </div>
+            </div>
+        </div>
+        <div id="messageFormeight" class="card-body msg_card_body d-flex flex-column"></div>
+    </div>
+</div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<audio style="display:none" id="audioPlayer" controls></audio>
+
+<script>
+    
+    
+    function scrollToBottom() {
+        var messageFormeight = document.getElementById('messageFormeight');
+        messageFormeight.scrollTop = messageFormeight.scrollHeight;
+    }
+    //var speedThreshold = 50; // Characters faster than this threshold will be grouped
+    //var lettersAtOnce = 2; // Number of letters to write at once when above threshold
+    $(document).ready(function() {
+        function displayWord(bubble, word, startTime, audioPlayer) {
+            const wordSpan = document.createElement('span');
+            wordSpan.textContent = word + " ";
+            bubble.appendChild(wordSpan);
+        
+            const checkTime = () => {
+                if (audioPlayer.currentTime >= startTime) {
+                    wordSpan.style.opacity = 1; // Fade in the word
+                } else {
+                    requestAnimationFrame(checkTime); // Keep checking
+                }
+            };
+            requestAnimationFrame(checkTime);
+        }
+        
+        function playAudioWithText(data, index = 0) {
+            if (index >= data.length) return; // Stop if there are no more entries
+        
+            const audioPlayer = document.getElementById('audioPlayer');
+            const transcriptDiv = document.getElementById('messageFormeight');
+        
+            const entry = data[index];
+            const bubble = document.createElement('div');
+            bubble.className = 'chat-bubble ' + (entry.name === "Customer" ? "Customer" : "Salesman");
+            transcriptDiv.appendChild(bubble);
+            entry.transcript.forEach(word => {
+                displayWord(bubble, word.word, word.start, audioPlayer);
+                scrollToBottom()
+            });
+        
+            audioPlayer.src = entry.voice_file; // Set the source of the audio element
+            audioPlayer.load();
+        
+            audioPlayer.onloadedmetadata = () => {
+                audioPlayer.play(); // Play the audio when it's loaded
+                //scrollToBottom();
+            };
+        
+            audioPlayer.onended = () => {
+                playAudioWithText(data, index + 1); // Schedule the next audio when the current one ends
+                //scrollToBottom();
+            };
+        }
+
+
+        
+        // Function to handle submission of user message
+        $("#startChat").on("click", function(event) {
+
+
+            $.ajax({
+                type: "GET",
+                url: "/messages",
+                success: function(data) {
+                    // Do something on successful sending
+                    $("#startChat").hide();
+                    playAudioWithText(data);
+                    //appendMessage(data); // Append new messages to chat history
+
+                }
+            });
+
+            
+        });
+
+       
+    });
+</script>
+</body>
+</html>
