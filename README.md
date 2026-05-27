@@ -36,27 +36,8 @@ Refines word-level transcripts using original dialogue:
 
 talk_voices_refined.json
 
-Features:
-
-punctuation restoration
-improved word alignment
-cleaner transcript output
-🌐 Web Application (Flask UI)
-
-A Flask-based web app provides an interactive interface for:
-
-conversation playback
-audio streaming
-transcript visualization
-media serving via REST API
+🌐 Web Application (Flask UI): A Flask-based web app provides an interactive interface for:
 Run server:python app.py
 
 
 
-✨ Features
-Multi-agent conversation simulation
-Automated text-to-speech pipeline
-Word-level transcription (Whisper)
-Punctuation restoration
-Synchronized audio + text UI
-Flask-based interactive frontend
