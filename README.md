@@ -6,38 +6,31 @@ This project simulates multi-agent conversations, converts dialogue into structu
 
 # 🔧 Setup
 
-## 1. API Configuration
+API Configuration
 Set your OpenAI API key in `oai_configuration` before running any scripts.
 
----
-
-# 🚀 Pipeline Overview
 
 ## 1. Run Conversation Simulation
 Generate a conversation log:
 
 
 python run_negotiation_simulation.py
-Output:
+Output: runs/<timestamp>/talk.json
 
-runs/<timestamp>/talk.json
-
-2. Convert Log → Structured Dialogue
+## 2. Convert Log → Structured Dialogue
 
 extracted.txt is parsed into structured JSON:
 
 talk.json
 
-From talk.json, each dialogue turn is processed into:
+From text_to_speech, each dialogue turn is processed into:
 
 000.wav → generated speech audio (TTS)
 000.json → metadata + Whisper word-level transcript
 
-Output folder:
 
-03_UI/voice/
 
-4. Transcript Refinement
+## 3. Transcript Refinement
 
 Refines word-level transcripts using original dialogue:
 
@@ -56,8 +49,7 @@ conversation playback
 audio streaming
 transcript visualization
 media serving via REST API
-Run server:
-python app.py
+Run server:python app.py
 
 
 
