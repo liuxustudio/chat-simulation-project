@@ -2,9 +2,12 @@
 
 This project from Fraunhofer simulates multi-agent conversations, converts dialogue into structured data, and generates synchronized speech audio for a web-based UI.
 
+---
 
+##  Project Structure
 
-# project-root/
+```text
+project-root/
 │
 ├── 00_Beispieldateien/     
 │   Sample input and reference data used across the project
