@@ -1,10 +1,10 @@
 # Chat Simulation + Speech Pipeline
 
-This project simulates multi-agent conversations, converts dialogue into structured data, and generates synchronized speech audio for a web-based UI.
+This project from Fraunhofer simulates multi-agent conversations, converts dialogue into structured data, and generates synchronized speech audio for a web-based UI.
 
 ---
 
-# 🔧 Setup
+#  Setup
 
 API Configuration
 Set your OpenAI API key in `oai_configuration` before running any scripts.
@@ -36,7 +36,7 @@ Refines word-level transcripts using original dialogue:
 
 talk_voices_refined.json
 
-🌐 Web Application (Flask UI): A Flask-based web app provides an interactive interface for:
+Web Application (Flask UI): A Flask-based web app provides an interactive interface for:
 Run server:python app.py
 
 
