@@ -4,7 +4,7 @@ This project from Fraunhofer simulates multi-agent conversations, converts dialo
 
 
 
-## 📁 Project Structure
+##  Project Structure
 
 - **00_Beispieldateien**  
   Sample input and reference data used across the project.
