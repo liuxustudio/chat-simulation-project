@@ -2,7 +2,7 @@
 
 This project from Fraunhofer simulates multi-agent conversations, converts dialogue into structured data, and generates synchronized speech audio for a web-based UI.
 
-**---
+
 
 ### Project Structure
 project-root/
@@ -18,7 +18,7 @@ project-root/
 └── 03_UI/                  # Flask-based web application interface
                              # Provides interactive frontend for system demonstration
 
----
+
 
 
 
