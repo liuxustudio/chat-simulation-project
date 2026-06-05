@@ -7,17 +7,20 @@ This project from Fraunhofer simulates multi-agent conversations, converts dialo
 ### Project Structure
 project-root/
 │
-├── 00_Beispieldateien/     # Sample input and reference data
+├── 00_Beispieldateien/     
+│   Sample input and reference data used across the project.
 │
-├── 01_create_chat/         # Zwei agents conversation simulation module
-│                            # Generates synthetic dialogue data using zwei agents
+├── 01_create_chat/         
+│   Multi-agent conversation simulation module.
+│   Generates synthetic dialogue data using multiple interacting agents.
 │
-├── 02_Pipeline/            # Dialogue processing and speech generation pipeline
-│                            # Handles text processing, transformation, and output generation
+├── 02_Pipeline/            
+│   Dialogue processing and speech generation pipeline.
+│   Handles text processing, transformation, and output generation.
 │
-└── 03_UI/                  # Flask-based web application interface
-                             # Provides interactive frontend for system demonstration
-
+└── 03_UI/                  
+    Flask-based web application interface.
+    Provides an interactive frontend for system demonstration.
 
 
 
