@@ -32,10 +32,8 @@ Set your OpenAI API key in `oai_configuration` before running any scripts:
 # oai_configuration
 OPENAI_API_KEY = "your-api-key-here"
 
-```python
-# oai_configuration
-OPENAI_API_KEY = "your-api-key-here"
-```
+
+
 
 ### Install Dependencies
 ```bash
