@@ -32,9 +32,6 @@ Set your OpenAI API key in `oai_configuration` before running any scripts:
 # oai_configuration
 OPENAI_API_KEY = "your-api-key-here"
 
-
-
-
 ### Install Dependencies
 ```bash
 pip install -r requirements.txt
@@ -42,7 +39,7 @@ pip install -r requirements.txt
 
 ---
 
-##  Usage
+
 
 ### Step 1 — Run Conversation Simulation
 
@@ -98,26 +95,3 @@ Then open your browser at `http://localhost:5000`
 
 ---
 
-## 🔄 Pipeline Overview
-
-```
-run_negotiation_simulation.py
-        │
-        ▼
-    talk.json  ◄──  extracted.txt
-        │
-        ▼
-  text_to_speech.py
-        │
-        ├──► 000.wav  (TTS audio)
-        └──► 000.json (Whisper transcript)
-                │
-                ▼
-      fine_transcript.py
-                │
-                ▼
-  talk_voices_refined.json
-                │
-                ▼
-           Flask UI (app.py)
-```
