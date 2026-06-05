@@ -20,10 +20,17 @@ project-root/
 │
 └── 03_UI/                  
     Flask-based web application providing an interactive frontend for system demonstration
+```
 
+---
 
-### API Configuration
+# API Configuration
+
 Set your OpenAI API key in `oai_configuration` before running any scripts:
+
+```python
+# oai_configuration
+OPENAI_API_KEY = "your-api-key-here"
 
 ```python
 # oai_configuration
